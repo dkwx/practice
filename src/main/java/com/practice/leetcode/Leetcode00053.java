@@ -19,7 +19,7 @@ package com.practice.leetcode;
  * @author : kai.dai
  * @date : 2020-05-03 21:18
  */
-public class Leetcode53 {
+public class Leetcode00053 {
     class Solution {
         /**
          * 动态规划
@@ -63,7 +63,7 @@ public class Leetcode53 {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Leetcode53().new Solution();
+        Solution solution = new Leetcode00053().new Solution();
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(solution.maxSubArray2(nums));
     }
