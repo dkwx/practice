@@ -28,7 +28,7 @@ import java.util.Arrays;
  * @author : kai.dai
  * @date : 2020-05-03 21:18
  */
-public class Leetcode000155 {
+public class Leetcode00155 {
 
     class MinStack {
         Integer min = null;
@@ -87,7 +87,7 @@ public class Leetcode000155 {
      * obj.push(x); obj.pop(); int param_3 = obj.top(); int param_4 = obj.getMin();
      */
     public static void main(String[] args) {
-        MinStack solution = new Leetcode000155().new MinStack();
+        MinStack solution = new Leetcode00155().new MinStack();
         solution.push(-2);
         solution.push(0);
         solution.push(-3);

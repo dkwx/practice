@@ -8,7 +8,7 @@ import java.util.List;
  * @date : 2020-05-10 14:44
  */
 public class TreeNode {
-    int val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
 
