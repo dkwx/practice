@@ -33,7 +33,6 @@ public class Leetcode00155 {
     class MinStack {
         Integer min = null;
         int[] arr;
-        int start;
         int currEnd;
 
         /**
@@ -41,7 +40,6 @@ public class Leetcode00155 {
          */
         public MinStack() {
             arr = new int[8];
-            start = 0;
             currEnd = 0;
         }
 
@@ -58,8 +56,13 @@ public class Leetcode00155 {
         }
 
         public void pop() {
-            currEnd--;
-            min = null;
+            if (top() == min) {
+                min = null;
+                currEnd--;
+                min = getMin();
+            } else {
+                currEnd--;
+            }
         }
 
         public int top() {
@@ -70,8 +73,8 @@ public class Leetcode00155 {
             if (min != null) {
                 return min;
             } else {
-                int temp = arr[start];
-                for (int i = start; i < currEnd; i++) {
+                int temp = arr[0];
+                for (int i = 0; i < currEnd; i++) {
                     if (temp > arr[i]) {
                         temp = arr[i];
                     }
