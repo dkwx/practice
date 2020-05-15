@@ -2,6 +2,9 @@ package com.practice.leetcode;
 
 import com.practice.leetcode.assist.Node;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。
  *
@@ -56,7 +59,42 @@ public class Leetcode00138 {
 
     class Solution {
         public Node copyRandomList(Node head) {
-            return null;
+            if (null == head) {
+                return null;
+            }
+            Map<Node, Node> oldNewNodeMap = new HashMap<>();
+            Node copy = new Node(head.val);
+            copyNode(head, copy, oldNewNodeMap);
+            return copy;
+
+        }
+
+        private void copyNode(Node source, Node copy, Map<Node, Node> oldNewNodeMap) {
+            if (null == source) {
+                return;
+            }
+            oldNewNodeMap.put(source, copy);
+            Node sourceNext = source.next, sourceRandom = source.random;
+            if (null != sourceNext) {
+                Node copyNext = oldNewNodeMap.get(sourceNext);
+                if (null == copyNext) {
+                    copyNext = new Node(sourceNext.val);
+                    copy.next = copyNext;
+                    copyNode(sourceNext, copyNext, oldNewNodeMap);
+                } else {
+                    copy.next = copyNext;
+                }
+            }
+            if (null != sourceRandom) {
+                Node copyRandom = oldNewNodeMap.get(sourceRandom);
+                if (null == copyRandom) {
+                    copyRandom = new Node(sourceRandom.val);
+                    copy.random = copyRandom;
+                    copyNode(sourceRandom, copyRandom, oldNewNodeMap);
+                } else {
+                    copy.random = copyRandom;
+                }
+            }
         }
     }
 
