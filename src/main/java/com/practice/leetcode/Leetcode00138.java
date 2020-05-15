@@ -100,6 +100,13 @@ public class Leetcode00138 {
 
     public static void main(String[] args) {
         Solution solution = new Leetcode00138().new Solution();
+        Map<String,Integer> map = new HashMap<>();
+        if(map.containsKey("key")){
+            map.put("key",map.get("key")+1);
+        }else{
+            map.put("key",1);
+        }
+        map.put("key",map.getOrDefault("key",0)+1);
         System.out.println(solution.copyRandomList(null));
     }
 }
