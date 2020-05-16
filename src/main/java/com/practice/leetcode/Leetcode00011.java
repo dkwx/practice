@@ -24,25 +24,27 @@ package com.practice.leetcode;
  */
 public class Leetcode00011 {
 
-  class Solution {
-    public int maxArea(int[] height) {
-      int maxArea = 0, i = 0, j = height.length - 1;
-      while (i != j) {
-        int area = Math.min(height[i], height[j]) * (j - i);
-        maxArea = Math.max(area, maxArea);
-        int temp = height[i] - height[j];
-        if (temp >= 0) {
-          j = j - 1;
-        } else {
-          i = i + 1;
+    class Solution {
+        public int maxArea(int[] height) {
+            int maxArea = 0, start = 0, end = height.length - 1;
+            while (start <= end) {
+                int length = end - start ;
+                int tempArea = length * Math.min(height[start], height[end]);
+                if (tempArea > maxArea) {
+                    maxArea = tempArea;
+                }
+                if (height[start] > height[end]) {
+                    end--;
+                } else {
+                    start++;
+                }
+            }
+            return maxArea;
         }
-      }
-      return maxArea;
     }
-  }
 
-  public static void main(String[] args) {
-    Solution solution = new Leetcode00011().new Solution();
-    System.out.println(solution.maxArea(new int[] {1, 8, 6, 2, 5, 4, 8, 3, 7}));
-  }
+    public static void main(String[] args) {
+        Solution solution = new Leetcode00011().new Solution();
+        System.out.println(solution.maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7}));
+    }
 }
