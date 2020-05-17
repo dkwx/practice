@@ -37,22 +37,17 @@ public class Leetcode00004 {
                 nums1 = nums2;
                 nums2 = temp;
             }
-            //
-            int m = nums1.length;
-            int n = nums2.length;
-            int mid = (m + n + 1) / 2;
-            //    i从0-m A[i-1]<B[j] 否则 i左移动
-            //    j = mid-i B[j-1]< A[i]，否则i右移动
+            int m = nums1.length, n = nums2.length, mid = (m + n + 1) / 2;
             int iMin = 0, iMax = m;
             while (iMin <= iMax) {
                 int i = (iMin + iMax) / 2;
                 int j = mid - i;
                 if (i > iMin && nums1[i - 1] > nums2[j]) {
-                    iMax = iMax - 1;
-                } else if (i < iMax && nums2[j - 1] > nums1[i]) {
-                    iMin = iMin + 1;
+                    iMax = i - 1;
+                } else if ((i < iMax) && nums1[i] < nums2[j - 1]) {
+                    iMin = i + 1;
                 } else {
-                    int maxLeft = 0;
+                    int maxLeft;
                     if (i == 0) {
                         maxLeft = nums2[j - 1];
                     } else if (j == 0) {
@@ -63,27 +58,24 @@ public class Leetcode00004 {
                     if ((m + n) % 2 == 1) {
                         return maxLeft;
                     }
-
-                    int minRight = 0;
+                    int minRight;
                     if (i == m) {
                         minRight = nums2[j];
                     } else if (j == n) {
                         minRight = nums1[i];
                     } else {
-                        minRight = Math.min(nums2[j], nums1[i]);
+                        minRight = Math.min(nums1[i], nums2[j]);
                     }
-
-                    return (maxLeft + minRight) / 2.0;
+                    return (maxLeft + minRight) / 2d;
                 }
             }
             return 0;
-
         }
 
     }
 
     public static void main(String[] args) {
         Solution solution = new Leetcode00004().new Solution();
-        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
+        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2, 5}, new int[]{3, 4}));
     }
 }
