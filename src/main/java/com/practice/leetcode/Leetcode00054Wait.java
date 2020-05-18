@@ -31,7 +31,7 @@ import java.util.List;
  * @author : kai.dai
  * @date : 2020-05-03 21:18
  */
-public class Leetcode00054 {
+public class Leetcode00054Wait {
 
 
     class Solution {
@@ -44,7 +44,7 @@ public class Leetcode00054 {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Leetcode00054().new Solution();
+        Solution solution = new Leetcode00054Wait().new Solution();
         int[][] arr = {{1, 2}, {2, 3}};
         System.out.println(solution.spiralOrder(arr));
     }
