@@ -24,6 +24,48 @@ public class Leetcode00005 {
 
 
     class Solution {
+
+        /**
+         * 暴力法
+         */
+        public String longestPalindrome3(String s) {
+            if (s == null || s.length() == 0) {
+                return s;
+            }
+            int start = 0, end = 0;
+            for (int i = 0; i < s.length() - 1; i++) {
+                int length1 = expand(s, i, i + 1);
+                int length2 = expand(s, i, i);
+                int maxLen = Math.max(length1, length2);
+                if (maxLen > (end - start)) {
+                    start = i - (maxLen - 1) / 2;
+                    end = i + maxLen / 2;
+                }
+            }
+            return s.substring(start, end + 1);
+        }
+
+        private int expand(String s, int start, int end) {
+            int length = 1;
+            if (start != end) {
+                if (s.charAt(start) == s.charAt(end)) {
+                    length++;
+                } else {
+                    return length;
+                }
+            }
+            while (start > 0 && end < (s.length() - 1)) {
+                if (s.charAt(start - 1) == s.charAt(end + 1)) {
+                    length += 2;
+                    start--;
+                    end++;
+                } else {
+                    break;
+                }
+            }
+            return length;
+        }
+
         /**
          * 暴力法
          */
@@ -92,6 +134,6 @@ public class Leetcode00005 {
 
     public static void main(String[] args) {
         Solution solution = new Leetcode00005().new Solution();
-        System.out.println(solution.longestPalindrome2("babad"));
+        System.out.println(solution.longestPalindrome3("babad"));
     }
 }
