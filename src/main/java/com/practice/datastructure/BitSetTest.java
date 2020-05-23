@@ -12,5 +12,7 @@ public class BitSetTest {
         BitSet bitSet = new BitSet();
         IntStream.range(4, 10).forEach(i -> bitSet.set(i));
         IntStream.range(1, 10).forEach(i -> System.out.println(bitSet.get(i)));
+
+        System.out.println("*****");
     }
 }
