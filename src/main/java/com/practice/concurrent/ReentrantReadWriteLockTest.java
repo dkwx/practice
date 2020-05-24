@@ -8,13 +8,25 @@ import java.util.stream.IntStream;
  * @date : 2020-05-24 21:01
  */
 public class ReentrantReadWriteLockTest {
-    public static void main(String[] args) {
-        readTest();
-        writeTest();
+    static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+
+    public static void main(String[] args) throws Exception {
+        new Thread(() -> {
+            readWriteLock.readLock().lock();
+            readWriteLock.writeLock().lock();
+            try {
+                System.out.println("获取到读锁");
+            } finally {
+                readWriteLock.writeLock().unlock();
+                readWriteLock.readLock().unlock();
+            }
+        }).start();
+        Thread.sleep(1000);
+        System.out.println("结束");
     }
 
     private static void writeTest() {
-        ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+
         IntStream.range(1, 10).forEach((i) -> {
             new Thread(() -> {
                 if (!readWriteLock.writeLock().tryLock()) {
@@ -32,7 +44,6 @@ public class ReentrantReadWriteLockTest {
     }
 
     private static void readTest() {
-        ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
         IntStream.range(1, 10).forEach((i) -> {
             new Thread(() -> {
                 if (!readWriteLock.readLock().tryLock()) {
