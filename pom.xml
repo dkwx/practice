@@ -29,6 +29,13 @@
             <artifactId>zookeeper</artifactId>
             <version>3.4.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>
