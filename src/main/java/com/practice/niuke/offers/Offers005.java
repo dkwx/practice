@@ -24,14 +24,24 @@ package com.practice.niuke.offers;
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers005Wait {
+public class Offers005 {
     class Solution {
         public String replaceSpace(String s) {
-            return null;
+            StringBuilder sb = new StringBuilder();
+            for (char ch : s.toCharArray()) {
+                if (ch == ' ') {
+                    sb.append("%20");
+                } else {
+                    sb.append(ch);
+                }
+            }
+            return sb.toString();
+            // return s.replaceAll(" ", "%20");
         }
     }
 
     public static void main(String[] args) {
-
+        Solution solution = new Offers005().new Solution();
+        System.out.println(solution.replaceSpace("We are happy."));
     }
 }
