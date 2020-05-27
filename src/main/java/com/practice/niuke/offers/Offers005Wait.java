@@ -27,7 +27,7 @@ package com.practice.niuke.offers;
 public class Offers005Wait {
     class Solution {
         public String replaceSpace(String s) {
-
+            return null;
         }
     }
 

@@ -1,5 +1,7 @@
 package com.practice.niuke.offers;
 
+import java.util.BitSet;
+
 /**
  * 剑指offer
  *
@@ -22,17 +24,29 @@ package com.practice.niuke.offers;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers003Wait {
+public class Offers003 {
     class Solution {
         public int findRepeatNumber(int[] nums) {
+            BitSet bitSet = new BitSet();
+            for (int num : nums) {
+                if (bitSet.get(num)) {
+                    return num;
+                } else {
+                    bitSet.set(num);
+                }
+            }
+            return -1;
 
         }
     }
 
     public static void main(String[] args) {
+        Solution solution = new Offers003().new Solution();
+        System.out.println(solution.findRepeatNumber(new int[]{2, 3, 1, 0, 2, 5, 3}));
 
     }
 }
