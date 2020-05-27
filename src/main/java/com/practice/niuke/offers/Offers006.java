@@ -2,6 +2,10 @@ package com.practice.niuke.offers;
 
 import com.practice.leetcode.assist.ListNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * 剑指offer
  *
@@ -23,7 +27,7 @@ import com.practice.leetcode.assist.ListNode;
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers006Wait {
+public class Offers006 {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
@@ -34,7 +38,17 @@ public class Offers006Wait {
      */
     class Solution {
         public int[] reversePrint(ListNode head) {
-            return null;
+            List<Integer> list = new ArrayList<>();
+            reverse(head, list);
+            return list.stream().mapToInt(Integer::valueOf).toArray();
+        }
+
+        private void reverse(ListNode head, List<Integer> list) {
+            if (null == head) {
+                return;
+            }
+            reverse(head.next, list);
+            list.add(head.val);
         }
     }
 
