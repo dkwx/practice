@@ -35,7 +35,7 @@ import java.util.Map;
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers007Wait {
+public class Offers007 {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
@@ -72,7 +72,7 @@ public class Offers007Wait {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Offers007Wait().new Solution();
+        Solution solution = new Offers007().new Solution();
         //[3,9,20,15,7]
         // [9,3,15,20,7]
         TreeNode result = solution.buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
