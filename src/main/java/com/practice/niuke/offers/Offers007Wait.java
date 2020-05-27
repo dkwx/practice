@@ -2,6 +2,9 @@ package com.practice.niuke.offers;
 
 import com.practice.leetcode.assist.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 剑指offer
  * 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
@@ -43,12 +46,37 @@ public class Offers007Wait {
      * }
      */
     class Solution {
+        Map<Integer, Integer> intMap = new HashMap<>();
+
         public TreeNode buildTree(int[] preorder, int[] inorder) {
-            return null;
+            for (int i = 0; i < inorder.length; i++) {
+                intMap.put(inorder[i], i);
+            }
+            TreeNode root = findRootNode(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+            return root;
+        }
+
+        private TreeNode findRootNode(int[] preorder, int p1, int p2, int[] inorder, int i1, int i2) {
+            if (p1 > p2 && i1 > i2) {
+                return null;
+            }
+            int rootVal = preorder[p1];
+            TreeNode result = new TreeNode(rootVal);
+            int inOrderIndex = intMap.get(rootVal);
+            int leftLength = inOrderIndex - i1;
+            // int rightLength = i2 - inOrderIndex;
+            result.left = findRootNode(preorder, p1 + 1, p1 + leftLength, inorder, i1, inOrderIndex - 1);
+            result.right = findRootNode(preorder, p1 + leftLength + 1, p2, inorder, inOrderIndex + 1, i2);
+            return result;
         }
     }
 
     public static void main(String[] args) {
+        Solution solution = new Offers007Wait().new Solution();
+        //[3,9,20,15,7]
+        // [9,3,15,20,7]
+        TreeNode result = solution.buildTree(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
+        System.out.println(result.val);
 
     }
 }
