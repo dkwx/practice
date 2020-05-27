@@ -28,9 +28,26 @@ package com.practice.niuke.offers;
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers004Wait {
+public class Offers004 {
     class Solution {
         public boolean findNumberIn2DArray(int[][] matrix, int target) {
+            if (null == matrix || 0 == matrix.length || 0 == matrix[0].length) {
+                return false;
+            }
+            int rowNum = matrix.length - 1;
+            int columnNum = matrix[0].length - 1;
+            int i = 0, j = rowNum;
+            while (i <= columnNum && j >= 0) {
+                int v = matrix[j][i];
+                if (v == target) {
+                    return true;
+                } else if (v > target) {
+                    j--;
+                } else {
+                    i++;
+                }
+
+            }
             return false;
         }
     }
