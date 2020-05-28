@@ -26,12 +26,41 @@ package com.practice.niuke.offers;
  */
 public class Offers013 {
     class Solution {
+        boolean[][] masks;
+
         public int movingCount(int m, int n, int k) {
-            return -1;
+            masks = new boolean[m][n];
+            return movingCount(m, n, 0, 0, k);
+        }
+
+        public int movingCount(int m, int n, int i, int j, int k) {
+            if (i >= m || j >= n || masks[i][j] == true) {
+                return 0;
+            }
+            if (bigger(i, j, k)) {
+                return 0;
+            }
+            masks[i][j] = true;
+            return 1 + movingCount(m, n, i + 1, j, k) + movingCount(m, n, i, j + 1, k);
+
+        }
+
+        private boolean bigger(int i, int j, int k) {
+            int sum = 0;
+            while (i != 0) {
+                sum += i % 10;
+                i = i / 10;
+            }
+            while (j != 0) {
+                sum += j % 10;
+                j = j / 10;
+            }
+            return sum > k;
         }
     }
 
     public static void main(String[] args) {
-
+        Solution solution = new Offers013().new Solution();
+        System.out.println(solution.movingCount(1,2,1));
     }
 }
