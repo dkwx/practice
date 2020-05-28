@@ -14,6 +14,6 @@ public class Offers999 {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(new Offers999().new Solution().fib(2));
     }
 }
