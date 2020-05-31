@@ -7,6 +7,7 @@ package com.practice.basic.base;
 public class IntegerTest {
     public static void main(String[] args) {
         Integer i = 10;
+        System.out.println(i);
         System.out.println(new Integer(10)==Integer.valueOf(10).intValue());
         System.out.println('\u0000');
         System.out.println('\u0001');

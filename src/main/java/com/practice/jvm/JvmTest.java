@@ -23,8 +23,27 @@ public class JvmTest {
 
     public static void main(String[] args) {
         JvmTest l = new JvmTest();
-        System.out.println(l.hashCode());
+        // System.out.println(Integer.toHexString(l.hashCode()));
+        System.out.println("无锁");
+        System.out.println(ClassLayout.parseInstance(l).toPrintable());
+        synchronized (l){
+            System.out.println("锁1");
+            System.out.println(ClassLayout.parseInstance(l).toPrintable());
+        }
+        new Thread(()->{
+            synchronized (l){
+                System.out.println("并发锁1");
+                System.out.println(ClassLayout.parseInstance(l).toPrintable());
+            }
+        }).start();
+        synchronized (l){
+            System.out.println("锁2");
+            System.out.println(ClassLayout.parseInstance(l).toPrintable());
+        }
+
+
         // LayOut
+        System.out.println("解锁");
         System.out.println(ClassLayout.parseInstance(l).toPrintable());
     }
 }
