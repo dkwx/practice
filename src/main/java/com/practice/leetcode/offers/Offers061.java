@@ -1,4 +1,4 @@
-package com.practice.niuke.offers;
+package com.practice.leetcode.offers;
 
 import java.util.HashSet;
 import java.util.Set;

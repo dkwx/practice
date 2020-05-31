@@ -1,4 +1,4 @@
-package com.practice.niuke.offers;
+package com.practice.leetcode.offers;
 
 /**
  * 剑指offer

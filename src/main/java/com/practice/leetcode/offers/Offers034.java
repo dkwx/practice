@@ -1,4 +1,4 @@
-package com.practice.niuke.offers;
+package com.practice.leetcode.offers;
 
 import com.practice.leetcode.assist.TreeNode;
 
