@@ -6,7 +6,7 @@ package com.practice.leetcode.offers;
  * @author : kai.dai
  * @date : 2020-05-27 13:34
  */
-public class Offers999 {
+public class Offers058_2 {
     class Solution {
         public int fib(int n) {
             return 0;
@@ -14,7 +14,7 @@ public class Offers999 {
     }
 
     public static void main(String[] args) {
-        Offers999 offers = new Offers999();
+        Offers058_2 offers = new Offers058_2();
         System.out.println(offers.new Solution().fib(2));
     }
 }
