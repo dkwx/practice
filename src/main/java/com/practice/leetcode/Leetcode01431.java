@@ -55,6 +55,7 @@ public class Leetcode01431 {
                     max = i;
                 }
             }
+
             List<Boolean> result = new ArrayList<>(candies.length);
             int chaZhi = max - extraCandies;
             for (int i : candies) {
