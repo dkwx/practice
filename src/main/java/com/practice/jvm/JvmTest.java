@@ -23,7 +23,7 @@ public class JvmTest {
 
     public static void main(String[] args) {
         JvmTest l = new JvmTest();
-        // System.out.println(Integer.toHexString(l.hashCode()));
+        System.out.println(Integer.toHexString(l.hashCode()));
         System.out.println("无锁");
         System.out.println(ClassLayout.parseInstance(l).toPrintable());
         synchronized (l){
