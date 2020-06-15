@@ -21,13 +21,19 @@ public class JvmTest {
     // Mark Word
     // class metadata address
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Thread.sleep(6000);
         JvmTest l = new JvmTest();
         System.out.println(Integer.toHexString(l.hashCode()));
         System.out.println("无锁");
         System.out.println(ClassLayout.parseInstance(l).toPrintable());
+        System.out.println(Long.toHexString(Thread.currentThread().getId()));
         synchronized (l){
             System.out.println("锁1");
+            System.out.println(ClassLayout.parseInstance(l).toPrintable());
+        }
+        synchronized (l){
+            System.out.println("锁2");
             System.out.println(ClassLayout.parseInstance(l).toPrintable());
         }
         new Thread(()->{
