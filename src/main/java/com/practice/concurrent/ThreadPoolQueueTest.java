@@ -15,25 +15,28 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ThreadPoolQueueTest {
     public static void main(String[] args) throws InterruptedException {
 
-        // ExecutorService executorService =  new ThreadPoolExecutor(2, 11,
-        //         10L, TimeUnit.SECONDS,
-        //         new LinkedBlockingQueue<Runnable>(3));
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        ExecutorService executorService =  new ThreadPoolExecutor(2, 11,
+                10L, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<Runnable>(1000));
+        // ExecutorService executorService = Executors.newSingleThreadExecutor();
         // ExecutorService executorService = Executors.newCachedThreadPool();
         // ExecutorService executorService = Executors.newFixedThreadPool(3);
         CountDownLatch countDownLatch = new CountDownLatch(100);
         AtomicInteger atomicInteger = new AtomicInteger(0);
-        for(int i = 0 ;i < 100 ;i ++){
-            executorService.execute(()->{
+        for (int i = 0; i < 100; i++) {
+            executorService.execute(() -> {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 System.out.println(atomicInteger.getAndIncrement());
+                ThreadPoolExecutor executor = (ThreadPoolExecutor) executorService;
+                System.out.println("active:"+executor.getActiveCount());
                 countDownLatch.countDown();
             });
         }
+        System.out.println("100个任务提交完了");
         countDownLatch.await();
         executorService.shutdown();
     }
