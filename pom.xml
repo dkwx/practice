@@ -35,6 +35,13 @@
             <artifactId>jol-core</artifactId>
             <version>0.9</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.phantomthief</groupId>
+            <artifactId>buffer-trigger</artifactId>
+            <version>0.2.13</version>
+            <scope>compile</scope>
+        </dependency>
+
 
     </dependencies>
 
